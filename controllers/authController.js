@@ -3,6 +3,8 @@ const User = require('../models/users');
 const appError = require('../utils/appError');
 const httpStatusText = require('../utils/httpStatusText');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const generateJWT = require('../utils/generateJWT');
 
 const register = asyncHandler(async (req, res, next) => {
     
@@ -36,6 +38,10 @@ const register = asyncHandler(async (req, res, next) => {
         confirmPassword: hashedPassword
     })
 
+    const token = await generateJWT({id: newUser._id});
+
+    newUser.token = token
+
     await newUser.save()
 
     res.status(201).json({status: httpStatusText.SUCCESS, data: {user: newUser}})
@@ -59,11 +65,15 @@ const login = asyncHandler(async (req, res, next) => {
 
     if(!isMatch){
         const error = appError.create('Wrong password', 400, httpStatusText.ERROR);
-        return res.status(400).json({error: error.message,
-            status: httpStatusText.ERROR,
-    });
+        return res.status(400).json({error: error.message, status: httpStatusText.ERROR,});
 }
+   
+    const token = await generateJWT({id: user._id});
 
+    user.token = token;
+
+    await user.save()
+    
     res.status(200).json({status: httpStatusText.SUCCESS, data: {user: user}})
 })
 

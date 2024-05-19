@@ -17,11 +17,13 @@ const userRouter = require('./routes/authRoute');
 const workoutRouter = require('./routes/workoutRoute');
 const planRouter = require('./routes/planRoute');
 const calorieRouter = require('./routes/calorie');
+const routineRouter = require('./routes/routineRoute');
 
 app.use('/api/users', userRouter)
 app.use('/api/workout', workoutRouter)
 app.use('/api/plan', planRouter)
 app.use('/api/calorie', calorieRouter)
+app.use('/api/routine', routineRouter)
 
 
 

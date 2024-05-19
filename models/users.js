@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Passwords must match'
         }
+    },
+
+    token: {
+        type: String
     }
 
 })

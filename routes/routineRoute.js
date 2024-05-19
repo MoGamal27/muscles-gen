@@ -10,5 +10,4 @@ router.route('/routine')
 
    
 router.route('/routine/:id')
-      .put(routineController.updateEvent)
       .delete(routineController.deleteEvent)     

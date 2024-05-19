@@ -1,7 +1,7 @@
 const Workout = require('../models/workout');
-const Cardio = require('../models/workouts.js/cardio')
-const Calisthenics = require('../models/workouts.js/calisthenics')
-const Mobility = require('../models/workouts.js/mobility')
+const Cardio = require('../models/workouts/cardio')
+const Calisthenics = require('../models/workouts/calisthenics')
+const Mobility = require('../models/workouts/mobility')
 const httpStatusText = require('../utils/httpStatusText');
 const asyncHandler = require('express-async-handler');
 

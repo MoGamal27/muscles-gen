@@ -28,25 +28,6 @@ const getEvents = asyncHandler(async (req, res) => {
 });
 
 
-const updateEvent = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const { title, start, allDay } = req.body;
-
-  const event = await Event.findOne({ id, user: req.user._id });
-
-  if (event) {
-    event.title = title || event.title;
-    event.start = start || event.start;
-    event.allDay = allDay !== undefined ? allDay : event.allDay;
-
-    const updatedEvent = await event.save();
-    res.json(updatedEvent);
-  } else {
-    res.status(404).json({ message: 'Event not found' });
-  }
-});
-
-
 const deleteEvent = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
@@ -60,4 +41,4 @@ const deleteEvent = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createEvent, getEvents, updateEvent, deleteEvent };
+module.exports = { createEvent, getEvents, deleteEvent };
