@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const httpStatusText = require('../utils/httpStatusText');
 const appError = require('../utils/appError');

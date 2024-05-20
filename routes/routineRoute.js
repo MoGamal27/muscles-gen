@@ -1,6 +1,6 @@
 const express = require('express');
 
-const router =express.Router();
+const router = express.Router();
 
 const routineController = require('../controllers/routineController');
 
@@ -10,4 +10,6 @@ router.route('/routine')
 
    
 router.route('/routine/:id')
-      .delete(routineController.deleteEvent)     
+      .delete(routineController.deleteEvent)
+      
+  module.exports = router      

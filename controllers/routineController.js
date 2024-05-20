@@ -3,7 +3,7 @@ const Event = require('../models/routine');
 
 
 const createEvent = asyncHandler(async (req, res) => {
-  const { title, start, allDay} = req.body;
+  const { title, start, allDay, user} = req.body;
 
   if (!title || !start) {
     res.status(400).json({ message: 'Title and start date are required' });
@@ -14,7 +14,7 @@ const createEvent = asyncHandler(async (req, res) => {
     title,
     start,
     allDay,
-    user: req.user._id,
+    user: user || req.user._id,
   });
 
   const createdEvent = await event.save();
