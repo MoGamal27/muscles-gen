@@ -50,7 +50,7 @@ const createMeals = asyncHandler(async (req, res) => {
 
     const mealsCalories = new MealsCalories({
       user: user || req.user._id,
-      food: food._id,
+      food: food.title,
       totalCalories,
       remainingCalories
     });

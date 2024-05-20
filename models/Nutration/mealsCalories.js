@@ -7,7 +7,7 @@ const mealsCaloriesSchema = new mongoose.Schema({
     required: true
   },
   food: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'meals',
     required: true
   },
