@@ -4,7 +4,16 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
 const serverless = require('serverless-http');
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000', // replace with your frontend URL
+  optionsSuccessStatus: 200
+};
+
+// Enable CORS with options
+app.use(cors(corsOptions));
+
+
+
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
