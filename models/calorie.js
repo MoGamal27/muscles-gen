@@ -26,14 +26,16 @@ const calorieSchema = new mongoose.Schema({
    bmr: { type: Number, required: true },
     caloricNeeds: {
         maintain: { type: Number, required: true },
-        weightLoss: { type: Number, required: true },
-        muscleGain: { type: Number, required: true }
+        lose: { type: Number, required: true },
+        gain: { type: Number, required: true }
     },
     bmi: { type: Number, required: true },
-    status: { type: String, required: true }
-
-
-
+    status: { type: String, required: true },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
 
 })
 

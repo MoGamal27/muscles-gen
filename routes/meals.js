@@ -1,8 +1,7 @@
-const express = require('express')
 
-const router = express.Router()
 
-const mealsController = require('../controllers/nutrition')
+
+/*const mealsController = require('../controllers/nutrition')
 
 router.route('/meals')
      .post(mealsController.createMeals)
@@ -12,6 +11,8 @@ router.route('/meals')
       
 router.route('/meals/:id/grams')
        .post(mealsController.selectedFood)
+*/
 
 
-module.exports = router     
+
+    

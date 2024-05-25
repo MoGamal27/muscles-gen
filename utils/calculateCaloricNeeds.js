@@ -8,13 +8,13 @@ const calculateCaloricNeeds = (bmr, activity) => {
     };
 
     const maintain = bmr * (activityFactors[activity] || 1.2);
-    const weightLoss = maintain * 0.8; 
-    const muscleGain = maintain * 1.1; 
+    const lose = maintain * 0.8; 
+    const gain= maintain * 1.1; 
 
     return {
         maintain: Math.round(maintain),
-        weightLoss: Math.round(weightLoss),
-        muscleGain: Math.round(muscleGain)
+        lose: Math.round(lose),
+        gain: Math.round(gain)
     };
 };
 

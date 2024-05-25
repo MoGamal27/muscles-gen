@@ -1,3 +1,4 @@
+/*
 const asyncHandler = require('express-async-handler');
 const Meals = require('../models/Nutration/meals')
 const MealsCalories = require('../models/Nutration/mealsCalories')
@@ -44,7 +45,7 @@ const createMeals = asyncHandler(async (req, res) => {
 
     const totalCalories = (food.calories / 100) * grams;
      
-    const goalCalories = goal === 'Lose weight' ? calorie : calorie * 1.2;
+    const goalCalories = goal === 'loseWeight' ? calorie : calorie * 1.2;
 
     const remainingCalories = goalCalories - totalCalories;
 
@@ -60,7 +61,9 @@ const createMeals = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       status: httpStatusText.SUCCESS,
-      data: {mealsCalories /*,food, totalCalories, remainingCalories*/ }
+      data: {mealsCalories /*,food, totalCalories, remainingCalories*/ 
+    /*    
+      }
     });
 
   })
@@ -69,4 +72,9 @@ const createMeals = asyncHandler(async (req, res) => {
     createMeals,
     selectedFood,
     getMeals
-  }
+  } 
+  
+  */
+
+
+  
