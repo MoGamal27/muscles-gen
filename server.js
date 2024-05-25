@@ -57,13 +57,16 @@ app.post('/api/foods', async (req, res) => {
     });
 
 
-
+    app.get('/', (req, res) => {
+      res.send("Hello World")
+  })
 app.use('/api/users', userRouter)
 app.use('/api/workout', workoutRouter)
 app.use('/api/plan', planRouter)
 app.use('/api/calorie', calorieRouter)
 app.use('/api/routine', routineRouter)
 //app.use('/api/meals', mealsRouter)
+
 
 
 
