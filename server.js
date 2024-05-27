@@ -20,11 +20,12 @@ app.use(express.json());
 
 // MongoDB Connection
 const url = process.env.MONGO_URL;
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(url).then(() => {
+  console.log("MongoDB Connected")
+})
 
-  const workoutRouter = require('./routes/workoutRoute');
+const userRouter = require('./routes/authRoute');
+const workoutRouter = require('./routes/workoutRoute');
 const planRouter = require('./routes/planRoute');
 const calorieRouter = require('./routes/calorie');
 const routineRouter = require('./routes/routineRoute');
