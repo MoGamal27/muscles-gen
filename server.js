@@ -70,6 +70,11 @@ app.get('/', (req, res) => {
   res.send("Hello World");
 });
 
+
+app.listen(process.env.PORT || 4000, () => {
+  console.log('listening on port: 4000');
+});
+
 // Export for serverless
 module.exports = app;
 module.exports.handler = serverless(app);
