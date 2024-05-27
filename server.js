@@ -13,7 +13,7 @@ const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // replace with your frontend URL
+  origin: 'http://localhost:3000/tools', // replace with your frontend URL
   optionsSuccessStatus: 200
 };
 
@@ -29,11 +29,16 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.error('MongoDB connection error:', err));
 
+  const workoutRouter = require('./routes/workoutRoute');
+const planRouter = require('./routes/planRoute');
+const calorieRouter = require('./routes/calorie');
+const routineRouter = require('./routes/routineRoute');
+const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
 // Routes
 app.use('/api/users', userRouter);
 app.use('/api/workout', workoutRouter);
 app.use('/api/plan', planRouter);
-app.use('/api/calorie', calorieRouter);
+app.use('/',calorieRouter);
 app.use('/api/routine', routineRouter);
 
 app.post('/api/foods', async (req, res) => {

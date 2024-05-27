@@ -5,8 +5,8 @@ const router = express.Router();
 const calorie = require('../controllers/calorie');
 
 
-router.route('/calorie')
+router.route('/tools')
       .post(calorie.createCalorie)
       
-router.route('/calorie')
+router.route('/tools')
       .get(calorie.getCalories)       
