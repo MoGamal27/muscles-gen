@@ -3,12 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const serverless = require('serverless-http');
 const mongoose = require('mongoose');
-const userRouter = require('./routes/authRoute');
-const workoutRouter = require('./routes/workoutRoute');
-const planRouter = require('./routes/planRoute');
-const calorieRouter = require('./routes/calorie');
-const routineRouter = require('./routes/routineRoute');
-const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
+
 
 const app = express();
 
