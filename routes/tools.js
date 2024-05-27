@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.route('/tools')
       .post(calorie.createCalorie)
       
 router.route('/tools')
-      .get(calorie.getCalories)       
+      .get(calorie.getCalories)*/       

@@ -34,7 +34,7 @@ const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
 app.use('/api/users', userRouter);
 app.use('/api/workout', workoutRouter);
 app.use('/api/plan', planRouter);
-app.use('/',calorieRouter);
+app.use('/calorie',calorieRouter);
 app.use('/api/routine', routineRouter);
 
 app.post('/api/foods', async (req, res) => {
