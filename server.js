@@ -13,7 +13,7 @@ const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // replace with your frontend URL
+  origin: 'http://localhost:3000/', // replace with your frontend URL
   optionsSuccessStatus: 200
 };
 
