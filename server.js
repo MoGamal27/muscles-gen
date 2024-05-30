@@ -30,12 +30,14 @@ const planRouter = require('./routes/planRoute');
 const calorieRouter = require('./routes/calorie');
 const routineRouter = require('./routes/routineRoute');
 const userMealsCalorie = require('./models/Nutration/userMealsCalorie');
+const exerciseRouter = require('./routes/exerciseRoute');
 // Routes
 app.use('/api/users', userRouter);
 app.use('/api/workout', workoutRouter);
 app.use('/api/plan', planRouter);
 app.use('/calorie',calorieRouter);
 app.use('/api/routine', routineRouter);
+app.use('/api/exercise', exerciseRouter);
 
 app.post('/api/foods', async (req, res) => {
   const { calorieIntake, goal, foods, totalCalories, remainingCalories, user } = req.body;
