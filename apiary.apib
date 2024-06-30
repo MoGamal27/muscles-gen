@@ -1,0 +1,342 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Mohamed Gamal            
+# Authentication Endpoints
+
+These endpoints handle user authentication.
+
+## Register User [POST /register]
+
+Registers a new user account.
+
++ Request (application/json)
+
+    + Attributes
+        - fullname: John Doe (string, required) - The full name of the user.
+        - email: john@example.com (string, required) - The email address of the user.
+        - password: password123 (string, required) - The password for the account.
+        - confirmPassword: password123 (string, required) - Confirmation of the password.
+
++ Response 201 (application/json)
+
+    + Attributes
+        - id: 1 (number, required) - The unique identifier for the newly registered user.
+        - fullname: John Doe (string, required) - The full name of the user.
+        - email: john@example.com (string, required) - The email address of the user.
+        - createdAt: 2024-05-15T12:00:00Z (string, required) - The timestamp when the user account was created.
+
++ Response 400 (application/json)
+
+    + Attributes
+        - message: "Validation failed" (string, required) - Error message indicating validation failure.
+        - errors: (array, required)
+            - (object)
+                - field: "fullname" (string, required) - The field that failed validation.
+                - message: "Full name is required" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "email" (string, required) - The field that failed validation.
+                - message: "Invalid email format" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "password" (string, required) - The field that failed validation.
+                - message: "Password must be at least 8 characters long" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "confirmPassword" (string, required) - The field that failed validation.
+                - message: "Passwords do not match" (string, required) - Error message specific to the field.
+
+## Login User [POST /login]
+
+Logs in an existing user.
+
++ Request (application/json)
+
+    + Attributes
+        - email: john@example.com (string, required) - The email address of the user.
+        - password: password123 (string, required) - The password for the account.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - id: 1 (number, required) - The unique identifier for the user.
+        - fullname: John Doe (string, required) - The full name of the user.
+        - email: john@example.com (string, required) - The email address of the user.
+        - token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (string, required) - JWT token for authentication.
+
++ Response 401 (application/json)
+
+    + Attributes
+        - message: "Invalid credentials" (string, required) - Error message indicating invalid email or password.
+        
+        # Workout Endpoints
+
+These endpoints provide information about different types of workouts.
+
+## Get Workouts [GET /workout]
+
+Retrieves a list of all available workouts.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - workouts: (array, required)
+            - (object)
+                - title: Cardio (string, required) - The title of the workout.
+                - text: A cardiovascular workout focused on improving endurance. (string, required) - Description of the workout.
+                - image: [Link to Cardio Image] (string, optional) - Link to an image representing the workout.
+            - (object)
+                - title: Body Building (string, required) - The title of the workout.
+                - text: A strength training workout targeting specific muscle groups. (string, required) - Description of the workout.
+                - image: [Link to Muscles Image] (string, optional) - Link to an image representing the workout.
+            - (object)
+                - title: Calisthenics (string, required) - The title of the workout.
+                - text: A bodyweight workout focusing on functional movements. (string, required) - Description of the workout.
+                - image: [Link to Calisthenics Image] (string, optional) - Link to an image representing the workout.
+            - (object)
+                - title: Mobility (string, required) - The title of the workout.
+                - text: A flexibility and mobility workout aimed at improving range of motion. (string, required) - Description of the workout.
+                - image: [Link to Mobility Image] (string, optional) - Link to an image representing the workout.
+
+## Cardio Workout [GET /workout/cardio]
+
+Retrieves details about the Cardio workout.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - title: Cardio (string, required) - The title of the workout.
+        - text: A cardiovascular workout focused on improving endurance. (string, required) - Description of the workout.
+        - image: [Link to Cardio Image] (string, optional) - Link to an image representing the workout.
+
+## Muscles Workout [GET /workout/muscles]
+
+Retrieves details about the Muscles workout.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - title: Muscles (string, required) - The title of the workout.
+        - text: A strength training workout targeting specific muscle groups. (string, required) - Description of the workout.
+        - image: [Link to Muscles Image] (string, optional) - Link to an image representing the workout.
+
+## Calisthenics Workout [GET /workout/calisthenics]
+
+Retrieves details about the Calisthenics workout.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - title: Calisthenics (string, required) - The title of the workout.
+        - text: A bodyweight workout focusing on functional movements. (string, required) - Description of the workout.
+        - image: [Link to Calisthenics Image] (string, optional) - Link to an image representing the workout.
+
+## Mobility Workout [GET /workout/mobility]
+
+Retrieves details about the Mobility workout.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - title: Mobility (string, required) - The title of the workout.
+        - text: A flexibility and mobility workout aimed at improving range of motion. (string, required) - Description of the workout.
+        - image: [Link to Mobility Image] (string, optional) - Link to an image representing the workout.
+
+# Routine Endpoint
+
+This endpoint allows users to create routines.
+
+## Create Routine [POST /routine]
+
+Creates a new routine.
+
++ Request (application/json)
+
+    + Attributes
+        - userId: 123 (number, required) - The unique identifier of the user creating the routine.
+        - title: cardio (string, required) - The title of the routine.
+        - startTime: "2024-05-15T08:00:00Z" (string, required) - The start time of the routine in ISO 8601 format.
+        - endTime: "2024-05-15T09:00:00Z" (string, required) - The end time of the routine in ISO 8601 format.
+        - allDay: false (boolean, required) - Indicates if the routine is scheduled for the entire day.
+
++ Response 201 (application/json)
+
+    + Attributes
+        - id: 1 (number, required) - The unique identifier for the newly created routine.
+        - userId: 123 (number, required) - The unique identifier of the user who created the routine.
+        - title: cardio (string, required) - The title of the routine.
+        - startTime: "2024-05-15T08:00:00Z" (string, required) - The start time of the routine in ISO 8601 format.
+        - endTime: "2024-05-15T09:00:00Z" (string, required) - The end time of the routine in ISO 8601 format.
+        - allDay: false (boolean, required) - Indicates if the routine is scheduled for the entire day.
+
++ Response 400 (application/json)
+
+    + Attributes
+        - message: "Validation failed" (string, required) - Error message indicating validation failure.
+        - errors: (array, required)
+            - (object)
+                - field: "userId" (string, required) - The field that failed validation.
+                - message: "User ID is required" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "title" (string, required) - The field that failed validation.
+                - message: "Title is required" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "startTime" (string, required) - The field that failed validation.
+                - message: "Start time is required" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "endTime" (string, required) - The field that failed validation.
+                - message: "End time is required" (string, required) - Error message specific to the field.
+            - (object)
+                - field: "allDay" (string, required) - The field that failed validation.
+                - message: "All day indication is required" (string, required) - Error message specific to the field.
+
+# Calorie Endpoint
+
+This endpoint calculates the daily calorie requirements based on various factors.
+
+## Calculate Calorie Requirements [POST /calorie/calc]
+
+Calculates the daily calorie requirements.
+
++ Request (application/json)
+
+    + Attributes
+        - age: 30 (number, required) - The age of the individual in years.
+        - gender: male (string, required) - The gender of the individual. Must be one of the following: male, female.
+        - weight: 70 (number, required) - The weight of the individual in kilograms.
+        - height: 175 (number, required) - The height of the individual in centimeters.
+        - activity: sedentary (string, required) - The activity level of the individual. Must be one of the following: sedentary, lightly active, moderately active, very active, extra active.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - calories: 2200 (number, required) - The estimated daily calorie requirements for the individual.
+
++ Response 400 (application/json)
+
+    + Attributes
+        - message: "Validation failed" (string, required) - Error message indicating validation failure.
+        - errors: (array, required)
+            - (object)
+                - field: "age" (string, required) - The field that failed validation.
+                - message: "Age must be a positive number." (string, required) - Error message specific to the field.
+            - (object)
+                - field: "gender" (string, required) - The field that failed validation.
+                - message: "Gender must be either 'male' or 'female'." (string, required) - Error message specific to the field.
+            - (object)
+                - field: "weight" (string, required) - The field that failed validation.
+                - message: "Weight must be a positive number." (string, required) - Error message specific to the field.
+            - (object)
+                - field: "height" (string, required) - The field that failed validation.
+                - message: "Height must be a positive number." (string, required) - Error message specific to the field.
+            - (object)
+                - field: "activity" (string, required) - The field that failed validation.
+                - message: "Activity level must be one of: sedentary, lightly active, moderately active, very active, extra active." (string, required) - Error message specific to the field.
+
+
+   # Price Endpoint
+
+This endpoint provides pricing information.
+
+## Get Pricing Information [GET /price]
+
+Retrieves pricing information.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - title: Pricing Information (string, required) - The title of the pricing information.
+        - text: Our pricing plans are designed to fit your needs. Contact us for more details. (string, required) - Description of the pricing information.
+
+# Team Endpoint
+
+This endpoint provides information about teams.
+
+## Get Team Information [GET /team]
+
+Retrieves information about the team.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - name: Team Name (string, required) - The name of the team.
+        - description: Description of the team (string, optional) - Additional information about the team.
+        - members: (array, required) - List of team members.
+            - (object)
+                - name: John Doe (string, required) - The name of the team member.
+                - role: Developer (string, optional) - The role of the team member.
+                - email: john@example.com (string, optional) - The email address of the team member.
+                
+                # Muscles Endpoint
+
+This endpoint provides information about different muscle groups.
+
+## Get All Muscle Information [GET /muscles]
+
+Retrieves information about all muscle groups.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - muscles: (array, required) - List of muscle groups.
+            - (object)
+                - name: Muscle Name (string, required) - The name of the muscle group.
+                - img: [Link to Muscle Image] (string, required) - Link to an image representing the muscle group.
+
+## Get Trops Information [GET /muscles/Trops]
+
+Retrieves information about the Trops muscle group.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - name: Trops (string, required) - The name of the muscle group.
+        - img: [Link to Trops Image] (string, required) - Link to an image representing the Trops muscle group.
+        - exercises: (array, required) - List of exercises targeting the Trops muscle group.
+            - (object)
+                - name: Exercise Name (string, required) - The name of the exercise.
+                - img: [Link to Exercise Image] (string, optional) - Link to an image representing the exercise.
+                - steps: Steps to perform the exercise (string, required) - Description of the exercise steps.
+
+## Get Shoulder Information [GET /muscles/Shoulder]
+
+Retrieves information about the Shoulder muscle group.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - name: Shoulder (string, required) - The name of the muscle group.
+        - img: [Link to Shoulder Image] (string, required) - Link to an image representing the Shoulder muscle group.
+        - exercises: (array, required) - List of exercises targeting the Shoulder muscle group.
+            - (object)
+                - name: Exercise Name (string, required) - The name of the exercise.
+                - img: [Link to Exercise Image] (string, optional) - Link to an image representing the exercise.
+                - steps: Steps to perform the exercise (string, required) - Description of the exercise steps.
+
+## Get Biceps Information [GET /muscles/Biceps]
+
+Retrieves information about the Biceps muscle group.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - name: Biceps (string, required) - The name of the muscle group.
+        - img: [Link to Biceps Image] (string, required) - Link to an image representing the Biceps muscle group.
+        - exercises: (array, required) - List of exercises targeting the Biceps muscle group.
+            - (object)
+                - name: Exercise Name (string, required) - The name of the exercise.
+                - img: [Link to Exercise Image] (string, optional) - Link to an image representing the exercise.
+                - steps: Steps to perform the exercise (string, required) - Description of the exercise steps.
+
+## Get Forearms Information [GET /muscles/Forearms]
+
+Retrieves information about the Forearms muscle group.
+
++ Response 200 (application/json)
+
+    + Attributes
+        - name: Forearms (string, required) - The name of the muscle group.
+        - img: [Link to Forearms Image] (string, required) - Link to an image representing the Forearms muscle group.
+        - exercises: (array, required) - List of exercises targeting the Forearms muscle group.
+            - (object)
+                - name: Exercise Name (string, required) - The name of the exercise.
+                - img: [Link to Exercise Image] (string, optional) - Link to an image representing the exercise.
+                - steps: Steps to perform the exercise (string, required) - Description of the exercise steps.
